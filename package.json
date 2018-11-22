@@ -1,0 +1,33 @@
+{
+  "name": "bingo-game-back-end",
+  "version": "1.0.0",
+  "description": "The back end with SocketIO for playing Bingo Online",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VinayakRugvedi/Bingo-Game-Back-End.git"
+  },
+  "keywords": [
+    "#bingo",
+    "#live",
+    "#game",
+    "#fun"
+  ],
+  "author": "A Vinayak Rugvedi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VinayakRugvedi/Bingo-Game-Back-End/issues"
+  },
+  "homepage": "https://github.com/VinayakRugvedi/Bingo-Game-Back-End#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  }
+}
