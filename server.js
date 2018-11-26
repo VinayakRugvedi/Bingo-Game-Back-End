@@ -13,15 +13,16 @@ io.on('connection', function(socket) {
 
   if(io.sockets.adapter.rooms['bingo' + roomNO]) {
     var roomLength = io.sockets.adapter.rooms['bingo' + roomNO].length
-    // console.log(roomLength)
     if(roomLength === 2) roomNO+=1
   }
-  console.log('bingo'+roomNO)
+
   socket.join('bingo'+roomNO)
-  socket.emit('sendRoom', {room : 'bingo'+roomNO})
+  socket.emit('sendRoomName', {roomName : 'bingo'+roomNO})
+  if(io.sockets.adapter.rooms['bingo' + roomNO].length === 2) {
+    io.in('bingo' + roomNO).emit('playerAvailable', {size : io.sockets.adapter.rooms['bingo' + roomNO].length})
+  }
   socket.on('myValue', function(number, room) {
     console.log(`I recieved the number ${number} to be sent to` + room)
-
     socket.in(room).emit('update', {value : number})
   })
 })
