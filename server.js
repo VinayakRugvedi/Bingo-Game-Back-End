@@ -17,12 +17,23 @@ io.on('connection', function(socket) {
   }
 
   socket.join('bingo'+roomNO)
+  socket.roomNO = roomNO
   socket.emit('sendRoomName', {roomName : 'bingo'+roomNO})
   if(io.sockets.adapter.rooms['bingo' + roomNO].length === 2) {
     io.in('bingo' + roomNO).emit('playerAvailable', {size : io.sockets.adapter.rooms['bingo' + roomNO].length})
   }
+
   socket.on('myValue', function(number, room) {
-    console.log(`I recieved the number ${number} to be sent to` + room)
+    console.log(`I recieved the number ${number} to be sent to ${room}`)
     socket.in(room).emit('update', {value : number})
+  })
+
+  socket.on('winner', () => {
+    socket.in('bingo'+socket.roomNO).emit('lost')
+  })
+
+  socket.on('disconnect', () => {
+    console.log('The player is disconnected')
+    io.in('bingo'+socket.roomNO).emit('playerDisconnected')
   })
 })
