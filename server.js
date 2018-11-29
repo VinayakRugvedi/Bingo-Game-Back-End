@@ -1,9 +1,11 @@
 const express = require('express')
+const CORS = require('cors')
 
 const PORT = process.env.PORT || 8000
 const app = express()
 const server = app.listen(PORT, () => console.log(`Started to listen on PORT : ${PORT}`))
 
+app.use(CORS())
 app.use(express.static('public/build'))
 
 var roomNO = -9999999999
