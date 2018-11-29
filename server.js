@@ -1,10 +1,12 @@
 const express = require('express')
 
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 const app = express()
 const server = app.listen(PORT, () => console.log(`Started to listen on PORT : ${PORT}`))
 
-var roomNO = 1
+app.use(express.static('public/build'))
+
+var roomNO = -9999999999
 
 const io = require('socket.io')(server)
 
