@@ -8,7 +8,7 @@ const server = app.listen(PORT, () => console.log(`Started to listen on PORT : $
 app.use(CORS())
 app.use(express.static('public/build'))
 
-var roomNO = -9999999999
+var roomNO = 0
 
 const io = require('socket.io')(server)
 
